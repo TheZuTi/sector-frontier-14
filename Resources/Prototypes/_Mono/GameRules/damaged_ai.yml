@@ -24,30 +24,6 @@
       Sheriff: 1
     reoccurrenceDelay: 150 # 2.5 hours
     duration: -1
-  - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
-    groups:
-      grid: !type:AiShuttleGridSpawnGroup
-        minimumDistance: 4000
-        maximumDistance: 6000
-        addComponents:
-        - type: RadarBlipIcon
-          icon: /Textures/_Lua/Interface/Radar/ai.png
-          scale: 1.2
-          allowWhenHidden: true
-        - type: IFF
-          color: "#FF0000"
-        - type: LinkedLifecycleGridParent
-        - type: AiShuttleBrain
-          preset: Zenith
-        paths:
-        - /Maps/_Mono/ShuttleEvent/zenith.yml
-    rewardAccounts:
-      Nfsd: 0.25
-      Frontier: 0.25
-      Medical: 0.25
-      Edison: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -64,30 +40,6 @@
       Sheriff: 1
     reoccurrenceDelay: 120 # 2 hours
     duration: -1
-  - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
-    groups:
-      grid: !type:AiShuttleGridSpawnGroup
-        minimumDistance: 4000
-        maximumDistance: 6000
-        addComponents:
-        - type: RadarBlipIcon
-          icon: /Textures/_Lua/Interface/Radar/ai.png
-          scale: 1.2
-          allowWhenHidden: true
-        - type: IFF
-          color: "#FF0000"
-        - type: LinkedLifecycleGridParent
-        - type: AiShuttleBrain
-          preset: Nebula
-        paths:
-        - /Maps/_Mono/ShuttleEvent/nebula.yml
-    rewardAccounts:
-      Nfsd: 0.25
-      Frontier: 0.25
-      Medical: 0.25
-      Edison: 0.25
 
 # - type: entity # Из-за бага требуется создать прям новую карту razor, я не могу найти причину почему этот Razor не стреляет
 #   parent: BaseGameRule
@@ -104,25 +56,6 @@
 #     requiredJobs:
 #       Sheriff: 1
 #     duration: -1
-#   - type: AiShuttleSpawnRule
-#     deleteGridsOnEnd: false
-#     asteroid: false
-#     groups:
-#       grid: !type:AiShuttleGridSpawnGroup
-#         minimumDistance: 4000
-#         maximumDistance: 6000
-#         addComponents:
-        # - type: RadarBlipIcon
-        #   icon: /Textures/_Lua/Interface/Radar/ai.png
-        #   scale: 1.2
-        #   allowWhenHidden: true
-#         - type: IFF
-#           color: "#FF0000"
-#         - type: LinkedLifecycleGridParent
-#         - type: AiShuttleBrain
-#           preset: Razor
-#         paths:
-#         - /Maps/_Mono/ShuttleEvent/razor.yml
 #     rewardAccounts:
 #       Nfsd: 0.25
 #       Frontier: 0.25
@@ -144,30 +77,6 @@
     requiredJobs:
       Sheriff: 1
     duration: -1
-  - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
-    groups:
-      grid: !type:AiShuttleGridSpawnGroup
-        minimumDistance: 4000
-        maximumDistance: 6000
-        addComponents:
-        - type: RadarBlipIcon
-          icon: /Textures/_Lua/Interface/Radar/ai.png
-          scale: 1.2
-          allowWhenHidden: true
-        - type: IFF
-          color: "#FF0000"
-        - type: LinkedLifecycleGridParent
-        - type: AiShuttleBrain
-          preset: Perun
-        paths:
-        - /Maps/_Lua/ShuttleEvent/AI_shuttle/PerunAI.yml
-    rewardAccounts:
-      Nfsd: 0.25
-      Frontier: 0.25
-      Medical: 0.25
-      Edison: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -184,30 +93,6 @@
     requiredJobs:
       Sheriff: 1
     duration: -1
-  - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
-    groups:
-      grid: !type:AiShuttleGridSpawnGroup
-        minimumDistance: 4000
-        maximumDistance: 6000
-        addComponents:
-        - type: RadarBlipIcon
-          icon: /Textures/_Lua/Interface/Radar/ai.png
-          scale: 1.2
-          allowWhenHidden: true
-        - type: IFF
-          color: "#FF0000"
-        - type: LinkedLifecycleGridParent
-        - type: AiShuttleBrain
-          preset: Pozvizd
-        paths:
-        - /Maps/_Lua/ShuttleEvent/AI_shuttle/PozvizdAI.yml
-    rewardAccounts:
-      Nfsd: 0.25
-      Frontier: 0.25
-      Medical: 0.25
-      Edison: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -224,27 +109,3 @@
     requiredJobs:
       Sheriff: 1
     duration: -1
-  - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
-    groups:
-      grid: !type:AiShuttleGridSpawnGroup
-        minimumDistance: 4000
-        maximumDistance: 6000
-        addComponents:
-        - type: RadarBlipIcon
-          icon: /Textures/_Lua/Interface/Radar/ai.png
-          scale: 1.2
-          allowWhenHidden: true
-        - type: IFF
-          color: "#FF0000"
-        - type: LinkedLifecycleGridParent
-        - type: AiShuttleBrain
-          preset: Stribog
-        paths:
-        - /Maps/_Lua/ShuttleEvent/AI_shuttle/StribogAI.yml
-    rewardAccounts:
-      Nfsd: 0.25
-      Frontier: 0.25
-      Medical: 0.25
-      Edison: 0.25

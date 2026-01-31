@@ -1647,13 +1647,6 @@ entities:
       nextSound: -1590.2857734
     - type: Physics
       canCollide: False
-- proto: FakeAiPlayerStation
-  entities:
-  - uid: 199
-    components:
-    - type: Transform
-      pos: 0.5,-4.5
-      parent: 1
 - proto: GeneratorWallmountAPU
   entities:
   - uid: 200

@@ -1235,13 +1235,6 @@ entities:
     - type: Transform
       pos: 4.5,-7.5
       parent: 1
-- proto: FakeAiPlayerStation
-  entities:
-  - uid: 203
-    components:
-    - type: Transform
-      pos: 4.5,-9.5
-      parent: 1
 - proto: GeneratorBasic15kW
   entities:
   - uid: 204

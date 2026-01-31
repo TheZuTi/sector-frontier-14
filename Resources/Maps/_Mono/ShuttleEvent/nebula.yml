@@ -1362,13 +1362,6 @@ entities:
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: Battery
-- proto: FakeAiPlayerStation
-  entities:
-  - uid: 225
-    components:
-    - type: Transform
-      pos: -0.5,-13.5
-      parent: 1
 - proto: GeneratorRTG
   entities:
   - uid: 226
