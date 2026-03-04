@@ -68,6 +68,35 @@
   hiddenFromNonMembers: true
 
 - type: company
+  id: KnightsOfYasherTable
+  name: Рыцари Ящерского Стола
+  color: "#4b0091"
+  form: Антагонисты
+  description: Орден безумных рыцарей, что дали клятву защищать эту дыру, что называется сектором Фронтир. Все считают их чёкнутыми, однако при схватке с ними, вы видите в их шлемах только ваш страх, а не их злобу, ведь рыцари не монстры, они всего лишь защищают вас, и этот сектор от безумства.
+  disabled: true
+  logins:
+    - Covral
+    - S3xMachineVayne
+    - maslok
+    - Daedalus
+    - Bluestarwing
+    - kibitka
+    - Raldjatech
+    - Bredpit
+    - TheZuTi
+    - PERed
+    - GermanReutt
+    - EllisTinker
+    - gornil
+    - hohopopo9
+    - TommyWin
+    - C_Quarian
+    - Netscape
+    - Auren
+    - ex1stenz
+  hiddenFromNonMembers: false
+
+- type: company
   id: CentComm
   name: Центральное Командование
   description: Руководители операциями в секторе, координируют работу станций, отправляют отряды реагирования, управляют протоколами экстренной безопасности и следят за соблюдением корпоративных стандартов.
