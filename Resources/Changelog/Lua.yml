@@ -3502,3 +3502,12 @@ Entries:
   id: 241
   time: '2026-03-05T11:18:56.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/482
+- author: KiraFaust
+  changes:
+    - type: Add
+      message: 'Стандартный скафандр Nanotrasen '
+    - type: Tweak
+      message: 'Куча респрйтов '
+  id: 242
+  time: '2026-03-05T11:45:50.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/477
