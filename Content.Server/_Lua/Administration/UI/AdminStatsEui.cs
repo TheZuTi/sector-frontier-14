@@ -19,6 +19,8 @@ using Content.Shared.NPC;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Content.Server._Lua.Administration.UI;
 
@@ -26,16 +28,22 @@ public sealed class AdminStatsEui : BaseEui
 {
     [Dependency] private readonly IAdminManager _admins = default!;
     [Dependency] private readonly IEntityManager _entMan = default!;
-    private TimeSpan _lastCpuTime;
-    private DateTime _lastCpuCheck;
+    private readonly bool _isLinux;
+    private readonly bool _isWindows;
+    private long _prevHostCpuIdle;
+    private long _prevHostCpuTotal;
+    private long _prevWinIdleTicks;
+    private long _prevWinKernelTicks;
+    private long _prevWinUserTicks;
     private readonly AdminStatsEuiState _cachedState = new();
 
     public AdminStatsEui()
     {
         IoCManager.InjectDependencies(this);
-        var proc = Process.GetCurrentProcess();
-        _lastCpuTime = proc.TotalProcessorTime;
-        _lastCpuCheck = DateTime.UtcNow;
+        _isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+        _isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        if (_isLinux) ReadLinuxCpuTotals(out _prevHostCpuIdle, out _prevHostCpuTotal);
+        else if (_isWindows) GetSystemTimes(out _prevWinIdleTicks, out _prevWinKernelTicks, out _prevWinUserTicks);
     }
 
     public override void Opened()
@@ -86,6 +94,7 @@ public sealed class AdminStatsEui : BaseEui
             RamTotalBytes = _cachedState.RamTotalBytes,
             CpuPercent = _cachedState.CpuPercent,
             CpuCount = _cachedState.CpuCount,
+            IsLinuxHost = _cachedState.IsLinuxHost,
         };
     }
 
@@ -172,22 +181,122 @@ public sealed class AdminStatsEui : BaseEui
 
     private void CollectResourceStats()
     {
-        var proc = Process.GetCurrentProcess();
-        _cachedState.RamUsedBytes = proc.WorkingSet64;
-        var gcInfo = GC.GetGCMemoryInfo();
-        _cachedState.RamTotalBytes = gcInfo.TotalAvailableMemoryBytes;
-        var now = DateTime.UtcNow;
-        var cpuTime = proc.TotalProcessorTime;
-        var elapsed = (now - _lastCpuCheck).TotalMilliseconds;
-        if (elapsed > 0)
-        {
-            var cpuUsed = (cpuTime - _lastCpuTime).TotalMilliseconds;
-            _cachedState.CpuPercent = cpuUsed / elapsed / Environment.ProcessorCount * 100.0;
-        }
-        _lastCpuTime = cpuTime;
-        _lastCpuCheck = now;
+        _cachedState.IsLinuxHost = _isLinux || _isWindows;
         _cachedState.CpuCount = Environment.ProcessorCount;
+        if (_isLinux)
+        {
+            CollectLinuxRam();
+            CollectLinuxCpu();
+        }
+        else if (_isWindows)
+        {
+            CollectWindowsRam();
+            CollectWindowsCpu();
+        }
+        else
+        {
+            _cachedState.RamUsedBytes = 0;
+            _cachedState.RamTotalBytes = 0;
+            _cachedState.CpuPercent = double.NaN;
+        }
     }
+
+    private void CollectLinuxRam()
+    {
+        long totalKb = 0;
+        long availableKb = 0;
+        try
+        {
+            foreach (var line in File.ReadLines("/proc/meminfo"))
+            {
+                if (line.StartsWith("MemTotal:")) totalKb = ParseMemInfoKb(line);
+                else if (line.StartsWith("MemAvailable:")) availableKb = ParseMemInfoKb(line);
+            }
+        }
+        catch { }
+        _cachedState.RamTotalBytes = totalKb * 1024;
+        _cachedState.RamUsedBytes = (totalKb - availableKb) * 1024;
+    }
+    private static long ParseMemInfoKb(string line)
+    {
+        var parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        return parts.Length >= 2 && long.TryParse(parts[1], out var kb) ? kb : 0;
+    }
+    private void CollectLinuxCpu()
+    {
+        if (!ReadLinuxCpuTotals(out var idle, out var total)) return;
+        var deltaTotal = total - _prevHostCpuTotal;
+        var deltaIdle = idle - _prevHostCpuIdle;
+        _cachedState.CpuPercent = deltaTotal > 0 ? (1.0 - (double) deltaIdle / deltaTotal) * 100.0 : 0;
+        _prevHostCpuIdle = idle;
+        _prevHostCpuTotal = total;
+    }
+
+    private static bool ReadLinuxCpuTotals(out long idle, out long total)
+    {
+        idle = 0;
+        total = 0;
+        try
+        {
+            using var sr = new StreamReader("/proc/stat");
+            var cpuLine = sr.ReadLine();
+            if (cpuLine == null || !cpuLine.StartsWith("cpu ")) return false;
+            var parts = cpuLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length < 5) return false;
+            for (var i = 1; i < parts.Length; i++)
+            { if (long.TryParse(parts[i], out var v)) total += v; }
+            if (long.TryParse(parts[4], out var idleVal)) idle = idleVal;
+            return true;
+        }
+        catch { return false; }
+    }
+
+    #region Windows
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct MemoryStatusEx
+    {
+        public uint Length;
+        public uint MemoryLoad;
+        public ulong TotalPhys;
+        public ulong AvailPhys;
+        public ulong TotalPageFile;
+        public ulong AvailPageFile;
+        public ulong TotalVirtual;
+        public ulong AvailVirtual;
+        public ulong AvailExtendedVirtual;
+    }
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool GlobalMemoryStatusEx(ref MemoryStatusEx lpBuffer);
+    [DllImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool GetSystemTimes(out long idleTime, out long kernelTime, out long userTime);
+    private void CollectWindowsRam()
+    {
+        var memStatus = new MemoryStatusEx { Length = (uint) Marshal.SizeOf<MemoryStatusEx>() };
+        if (GlobalMemoryStatusEx(ref memStatus))
+        {
+            _cachedState.RamTotalBytes = (long) memStatus.TotalPhys;
+            _cachedState.RamUsedBytes = (long) (memStatus.TotalPhys - memStatus.AvailPhys);
+        }
+    }
+
+    private void CollectWindowsCpu()
+    {
+        if (!GetSystemTimes(out var idle, out var kernel, out var user)) return;
+        var deltaIdle = idle - _prevWinIdleTicks;
+        var deltaKernel = kernel - _prevWinKernelTicks;
+        var deltaUser = user - _prevWinUserTicks;
+        var deltaTotal = deltaKernel + deltaUser;
+        _cachedState.CpuPercent = deltaTotal > 0 ? (1.0 - (double) deltaIdle / deltaTotal) * 100.0 : 0;
+        _prevWinIdleTicks = idle;
+        _prevWinKernelTicks = kernel;
+        _prevWinUserTicks = user;
+    }
+
+    #endregion
 
     private bool EnsureAuthorized()
     {
