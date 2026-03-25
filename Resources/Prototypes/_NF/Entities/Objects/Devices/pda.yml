@@ -18,12 +18,12 @@
       - CrewManifestCartridge
       - NotekeeperCartridge
       - YupiTransferCartridge # Lua
+      - NanoChatCartridge # Lua
       - NanoTaskCartridge
       - NewsReaderCartridge
       - BountyContractsCartridge
       - AstroNavCartridge
       - WantedListCartridge
-      - LedgerCartridge
       - LogProbeCartridge
       - MailMetricsCartridge
       - AppraisalCartridge
@@ -154,12 +154,12 @@
     - CrewManifestCartridge
     - NotekeeperCartridge
     - YupiTransferCartridge # Lua
+    - NanoChatCartridge # Lua
     - NanoTaskCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge
     - AstroNavCartridge
     - WantedListCartridge
-    - LedgerCartridge
 
 - type: entity
   parent: BaseSecurityPDA
@@ -377,11 +377,11 @@
     - CrewManifestCartridge
     - NotekeeperCartridge
     - YupiTransferCartridge # Lua
+    - NanoChatCartridge # Lua
     - NanoTaskCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge
     - AstroNavCartridge
-    - LedgerCartridge
     - MailMetricsCartridge
 
 - type: entity
@@ -534,11 +534,11 @@
     - CrewManifestCartridge
     - NotekeeperCartridge
     - YupiTransferCartridge # Lua
+    - NanoChatCartridge # Lua
     - NanoTaskCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge
     - AstroNavCartridge
-    - LedgerCartridge
     - MedTekCartridge
 
 - type: entity
@@ -582,8 +582,8 @@
     - CrewManifestCartridge
     - NotekeeperCartridge
     - YupiTransferCartridge # Lua
+    - NanoChatCartridge # Lua
     - NanoTaskCartridge
     - NewsReaderCartridge
     - BountyContractsCartridge
     - AstroNavCartridge
-    - LedgerCartridge
