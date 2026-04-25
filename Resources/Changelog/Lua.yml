@@ -3941,3 +3941,12 @@ Entries:
   id: 279
   time: '2026-04-25T14:34:37.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/515
+- author: harara228-prog
+  changes:
+    - type: Add
+      message: >-
+        Шаттл Sentinel с вооружением в виде: 3 220мм Сайбрекса, 2 ЭМИ-Рубикон, 2
+        средних миномёта. В наличии ультра-сервер вооружения. Для ДСБФ.
+  id: 280
+  time: '2026-04-25T14:37:03.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/500
