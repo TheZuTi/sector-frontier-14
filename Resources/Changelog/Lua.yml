@@ -3997,3 +3997,12 @@ Entries:
   id: 283
   time: '2026-05-01T19:37:15.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/563
+- author: Maksimvini
+  changes:
+    - type: Add
+      message: >-
+        Добавлен шаттл Edelweiss - полный аналог шаттла Apothecary, с похожим
+        стилем, но своими достатками. Создан с нуля по аналогу.
+  id: 284
+  time: '2026-05-01T19:39:45.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/555
