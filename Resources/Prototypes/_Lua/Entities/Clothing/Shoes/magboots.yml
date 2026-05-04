@@ -3,7 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: ClothingShoesBootsMag
+  parent: [ClothingShoesBootsMag, BaseC3CentCommContraband]
   id: ClothingShoesBootsMagFSF
   components:
   - type: Sprite
@@ -14,6 +14,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
+  - type: ClothingSlowOnDamageModifier #Lua
+    modifier: 0.5
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -21,7 +23,7 @@
     price: 750
 
 - type: entity
-  parent: ClothingShoesBootsMag
+  parent: [ClothingShoesBootsMag, BaseC3CentCommContraband]
   id: ADTClothingShoesBootsMagERT
   components:
   - type: Sprite
@@ -29,6 +31,8 @@
     state: icon
   - type: Clothing
     sprite: ADT/Clothing/Shoes/Boots/magboots-ert.rsi
+  - type: ClothingSlowOnDamageModifier #Lua
+    modifier: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
