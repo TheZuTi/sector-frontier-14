@@ -91,8 +91,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitEllisTinker
-  name: комбинезон 'Зона'
-  description: Усиленный комбинезон из композитной ткани. Принадлежат члену экипажа, находящемуся под покровительством спонсорской организации.
+  name: Шинель "Криг"
+  description: Тяжёлая двубортная шинель с медными пуговицами.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -154,7 +154,7 @@
 - type: entity
   parent: ClothingBeltStorageBaseNoWeaponSlot
   id: ClothingBeltEllisTinkerFilled
-  name: защитный бот
+  name: Защитный бот
   description: Защитный бот. Верный помощник своего владельца.
   categories: [ HideSpawnMenu ]
   components:
@@ -187,7 +187,7 @@
   parent: [ClothingBackpack, HardsuitIdentifySponsor]
   id: ClothingBackpackEllisTinker
   name: Рюкзак Гвардейца
-  description: Вместительный рюкзак с множеством карманов. Имеет окрас городского камуфляжа. Принадлежит члену экипажа, находящемуся под покровительством спонсорской организации.
+  description: Вместительный рюкзак с множеством карманов. Сделана из прочной кожи. Принадлежит члену экипажа, находящемуся под покровительством спонсорской организации.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -225,7 +225,7 @@
   parent: BaseMedicalPDA
   id: PDAEllisTinker
   name: КПК 'Верный боец'
-  description: Изготовлено на заказ организацией LaFleur Wear.
+  description: Изготовлено на заказ для верного бойца.
   categories: [ HideSpawnMenu ]
   components:
   - type: Icon
@@ -247,8 +247,8 @@
 - type: entity
   parent: SyndicateJawsOfLife
   id: SyndicateJawsOfLifeEllisTinker
-  name: бирюзовые челюсти жизни
-  description: Корпус похож на сплав тёмного титана и синего кварца, а между массивными губками переливается мягкая бирюзовая плазма-нить, создавая ощущение, будто инструмент «дышит» электрическим светом.
+  name: челюсти жизни
+  description: Продвинутый инженерный инструмент, значительно ускоряет работу. Корпус изготовлен из сплава тёмного титана, выполнено на заказ.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -284,8 +284,8 @@
 - type: entity
   parent: PowerDrill
   id: PowerDrillEllisTinker
-  name: бирюзовая электродрель
-  description: Цилиндрическое тело обтянуто рёбрами из графитового волокна, внутреннее сверло виднеется сквозь прозрачную секцию, где мерцают крошечные арк-искры, будто внутри спрятан крошечный шторм.
+  name: электродрель
+  description: Продвинутый инженерный инструмент, значительно ускоряет работу. Корпус изготовлен из сплава тёмного титана, выполнено на заказ.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -323,8 +323,8 @@
 - type: entity
   parent: WelderExperimental
   id: WelderExperimentalEllisTinker
-  name: бирюзовый экспериментальный сварочный аппарат
-  description: Компактная рукоять плавно переходит в хромированный сопло-клюв, вокруг него клубится тонкое голубо-белое марево, словно пламя пытается выбраться наружу, но держится «в клетке» силового поля.
+  name: экспериментальный сварочный аппарат
+  description: Продвинутый инженерный инструмент, значительно ускоряет работу. Корпус изготовлен из сплава тёмного титана, выполнено на заказ.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -336,8 +336,8 @@
 - type: entity
   parent: Multitool
   id: MultitoolEllisTinker
-  name: бирюзовый мультитул
-  description: Гладкий прямоугольник с рассыпанными по граням голографическими метками, при лёгком касании корпуса по его поверхности пробегает переливчатая сетка, напоминающая нервную систему живого организма.
+  name: мультитул
+  description: Предназначенный для работы с электроникой, логическими сетями и взломом.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -347,8 +347,8 @@
 - type: entity
   parent: HolofanProjector
   id: HolofanProjectorEllisTinker
-  name: бирюзовый голопроектор
-  description: Изготовлено на заказ организацией LaFleur Wear.
+  name: серый голопроектор
+  description: Изготовлено на заказ 3eilado.inc.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -361,6 +361,7 @@
 - type: entity
   id: HoloFanEllisTinker
   parent: HoloFan
+  categories: [ HideSpawnMenu ]
   name: атмосферный барьер
   description: Барьер из твёрдого света, который блокирует воздух и ничего более.
   components:
@@ -373,7 +374,7 @@
   name: бирюзовый газоанализатор
   parent: GasAnalyzer
   id: GasAnalyzerEllisTinker
-  description: Изготовлено на заказ организацией LaFleur Wear.
+  description: Изготовлено на заказ 3eilado.inc.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -384,10 +385,10 @@
 
 # mass scanner
 - type: entity
-  name: бирюзовый сканер массы
+  name: сканер массы
   parent: HandHeldMassScanner
   id: HandHeldMassScannerEllisTinker
-  description: Широкий датчик цвета иней с зеркальной линзой.
+  description: Широкий датчик холодного цвета. Верный кот ИИ точно поможет найти вам верный путь в космосе.
   categories: [ HideSpawnMenu ]
   components:
   - type: Item
