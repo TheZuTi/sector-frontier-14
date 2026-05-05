@@ -41,7 +41,6 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
-        Shock: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
