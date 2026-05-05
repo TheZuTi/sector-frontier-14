@@ -416,3 +416,7 @@
     sprite: _Lua/Sponsor/EllisTinker/jet.rsi
   - type: Clothing
     sprite: _Lua/Sponsor/EllisTinker/jet.rsi
+    slots:
+      - back
+      - suitStorage
+      - belt

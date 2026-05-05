@@ -8,11 +8,12 @@
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "directions": 1
     },
     {
-      "name": "equipped-BACKPACK",
-      "directions": 4
+      "name": "icon-on",
+      "directions": 1
     },
     {
       "name": "inhand-left",
@@ -20,6 +21,30 @@
     },
     {
       "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "equipped-BACKPACK",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-BACKPACK",
+      "directions": 4
+    },
+    {
+      "name": "equipped-BELT",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-BELT",
+      "directions": 4
+    },
+    {
+      "name": "equipped-SUITSTORAGE",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-SUITSTORAGE",
       "directions": 4
     }
   ]
