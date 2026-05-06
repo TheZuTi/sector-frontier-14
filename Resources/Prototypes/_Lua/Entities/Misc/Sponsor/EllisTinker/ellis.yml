@@ -1,7 +1,7 @@
 - type: sponsorLoadout
   id: EllisTinker
   ownerLogin: EllisTinker
-  tier: god
+  tier: rank3
   entities:
     - ClothingBackpackEllisTinker
     - ClothingBeltEllisTinkerFilled
@@ -35,10 +35,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.4
-        Heat: 0.5
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.7
         Radiation: 0.5
         Caustic: 0.5
   - type: ClothingSpeedModifier
@@ -195,17 +195,6 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
-  - type: StorageFill
-    contents:
-    - id: ClothingBeltEllisTinkerFilled
-    - id: ClothingShoesBootsMagEllisTinker
-    - id: PDAEllisTinker
-    - id: ClothingUniformJumpsuitEllisTinker
-    - id: ClothingNeckEllisTinker
-    - id: ClothingHandsGlovesEllisTinker
-    - id: ClothingEyesHudAdvanced
-    - id: MedkitCombatFilled
-    - id: JetpackVoidEllisTinker
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitEllisTinker
     requiredSlot: BACK
